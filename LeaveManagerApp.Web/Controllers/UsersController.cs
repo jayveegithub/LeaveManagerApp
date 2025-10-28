@@ -34,7 +34,8 @@ namespace LeaveManagerApp.Web.Controllers
                     Email = u.Email,
                     IsActive = u.IsActive
                 })
-                .ToListAsync();
+				.OrderBy(u => u.FullName)
+				.ToListAsync();
 
             return Ok(list);
         }
@@ -53,6 +54,7 @@ namespace LeaveManagerApp.Web.Controllers
 					Email = u.Email,
 					IsActive = u.IsActive
 				})
+                .OrderBy(u => u.FullName)
 				.ToList();
 
 			return Ok(list);
