@@ -21,6 +21,12 @@ namespace LeaveManagerApp.Web.Data
 
             builder.Entity<LeaveRequest>()
                    .HasIndex(r => new { r.ApplicantId, r.StartDate, r.EndDate });
-        }
+
+			builder.Entity<LeaveRequest>()
+				.HasOne(l => l.Manager)
+				.WithMany()
+				.HasForeignKey(l => l.ManagerId)
+				.OnDelete(DeleteBehavior.NoAction);
+		}
     }
 }
