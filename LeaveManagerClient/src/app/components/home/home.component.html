@@ -1,0 +1,88 @@
+<div class="leave-form-container">
+  <mat-card>
+    <mat-card-title>New Leave Request</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+        <div class="form-columns">
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Applicant</mat-label>
+              <mat-select formControlName="applicant">
+                <mat-option *ngFor="let u of users" [value]="u.id">{{u.fullName}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="f.applicant.touched && f.applicant.hasError('required')">Applicant is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Start date</mat-label>
+              <input matInput [matDatepicker]="startPicker" formControlName="startDate" [min]="minStartDate">
+              <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+              <mat-error *ngIf="f.startDate.hasError('required')">Start date is required</mat-error>
+              <mat-error *ngIf="f.startDate.hasError('pastDate')">Start date must not be in the past</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Return Date</mat-label>
+              <input matInput [matDatepicker]="returnPicker" formControlName="returnDate">
+              <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
+              <mat-datepicker #returnPicker></mat-datepicker>
+              <mat-error *ngIf="f.returnDate.hasError('required')">Return date is required</mat-error>
+              <mat-error *ngIf="f.returnDate.hasError('returnBeforeEnd')">Return date must be after end date</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-column">
+            <mat-form-field appearance="fill">
+              <mat-label>Manager</mat-label>
+              <mat-select formControlName="manager">
+                <mat-option *ngFor="let m of managers" [value]="m.id">{{m.fullName}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="f.manager.touched && f.manager.hasError('required')">Manager is required</mat-error>
+              <mat-error *ngIf="f.manager.hasError('sameAsApplicant')">Manager must be different to applicant</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>End date</mat-label>
+              <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+              <mat-error *ngIf="f.endDate.hasError('required')">End date is required</mat-error>
+              <mat-error *ngIf="f.endDate.hasError('endBeforeStart')">End date must be after start date</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Number of days</mat-label>
+              <input matInput type="text" formControlName="numberOfDays" readonly="true" min="1">
+              <mat-error *ngIf="f.numberOfDays.hasError('required')">Number of days required</mat-error>
+              <mat-error *ngIf="f.numberOfDays.hasError('min')">Number of days must be at least 1</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- General comments -->
+          <mat-form-field appearance="fill" class="full-span">
+            <mat-label>General comments</mat-label>
+            <textarea matInput rows="4" formControlName="generalComments"></textarea>
+            <mat-hint align="end">{{ f.generalComments.value?.length || 0 }}/500</mat-hint>
+            <mat-error *ngIf="f.generalComments.hasError('maxlength')">Maximum 500 characters allowed</mat-error>
+          </mat-form-field>
+
+           <!-- Leave Type -->
+          <mat-form-field appearance="fill" class="full-span">
+            <mat-label>Leave Type</mat-label>
+            <mat-select formControlName="leaveTypeId">
+              <mat-option *ngFor="let lvt of leaveTypes" [value]="lvt.id">{{lvt.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.leaveTypeId.touched && f.leaveTypeId.hasError('required')">
+              Leave type is required
+            </mat-error>
+          </mat-form-field>         
+        </div>
+
+        <div class="form-actions" >
+          <button mat-outlined-button color="primary" type="submit" [disabled]="loading">Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,53 @@
+@use '@angular/material' as mat;
+
+/* Include the common styles for Angular Material */
+@include mat.core();
+
+/* Define your theme */
+/*
+$primary: mat.define-palette(mat.$indigo-palette);
+$accent: mat.define-palette(mat.$pink-palette);
+$theme: mat.define-light-theme((color: (primary: $primary,
+                accent: $accent,
+            )));
+*/
+
+/* Apply the theme */
+/*@include mat.all-component-themes($theme);*/
+
+/* Global styles */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Global overrides for overlay elements (dropdowns / datepicker panels) */
+.cdk-overlay-container .mat-select-panel,
+.cdk-overlay-container .mat-datepicker-content,
+.cdk-overlay-container .mat-calendar,
+.cdk-overlay-container .mat-option {
+    background-color: #ffffff !important;
+    /* opaque white */
+    color: rgba(0, 0, 0, 0.87) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 6px !important;
+}
+
+/* Ensure options have readable hover state */
+.cdk-overlay-container .mat-option:hover,
+.cdk-overlay-container .mat-option.mat-focused {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Datepicker calendar cell background override (if theme made them transparent) */
+.cdk-overlay-container .mat-calendar-body-cell {
+    background: transparent;
+}
+
+/* Force the panel text color for selected/active states */
+.cdk-overlay-container .mat-option.mat-selected {
+    background-color: rgba(0, 0, 0, 0.06) !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+}

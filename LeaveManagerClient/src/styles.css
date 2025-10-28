@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+/* Global overrides for overlay elements (dropdowns / datepicker panels) */
+.cdk-overlay-container .mat-select-panel,
+.cdk-overlay-container .mat-datepicker-content,
+.cdk-overlay-container .mat-calendar,
+.cdk-overlay-container .mat-option,
+.mat-mdc-select-panel .mat-mdc-option {
+  background-color: #ffffff !important; /* opaque white */
+  color: rgba(0,0,0,0.87) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
+  border-radius: 6px !important;
+}
+
+/* Ensure options have readable hover state */
+.cdk-overlay-container .mat-option:hover,
+.cdk-overlay-container .mat-option.mat-focused {
+  background-color: rgba(0,0,0,0.04) !important;
+}
+
+/* Datepicker calendar cell background override (if theme made them transparent) */
+.cdk-overlay-container .mat-calendar-body-cell {
+  background: transparent;
+}
+
+/* Force the panel text color for selected/active states */
+.cdk-overlay-container .mat-option.mat-selected {
+  background-color: rgba(0,0,0,0.06) !important;
+  color: rgba(0,0,0,0.87) !important;
+}
+
+.mat-mdc-form-field-error {
+  color: rgba(212, 5, 5, 0.87) !important;
+}
+
+/* increase padding for card titles */
+.mat-mdc-card-title {
+  padding: 10px 0px 20px 0px !important; 
+  font-weight: bold !important;
+}

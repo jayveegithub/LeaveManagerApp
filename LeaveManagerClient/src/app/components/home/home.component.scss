@@ -1,0 +1,97 @@
+
+
+.leave-form-container {
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Make form-field fill background opaque and add a solid border */
+.leave-form-container .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #ffffff; /* opaque white */
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* Stronger border on focus for accessibility */
+.leave-form-container .mat-form-field-appearance-fill.mat-focused .mat-form-field-flex {
+  border-color: rgba(0,0,0,0.28);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+}
+
+/* Ensure native input/textarea do not show their own borders and inherit visual style */
+.leave-form-container input.mat-input-element,
+.leave-form-container textarea.mat-input-element,
+.leave-form-container .mat-select-trigger {
+  background: transparent;
+  color: rgba(0,0,0,0.87);
+  outline: none;
+  border: none;
+}
+
+/* Make the select trigger visually consistent */
+.leave-form-container .mat-select-trigger {
+  color: rgba(0,0,0,0.87);
+}
+
+/* Full-span comment styling preserved */
+.full-span {
+  grid-column: 1 / -1;
+}
+
+.form-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .form-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Global overrides for overlay elements (dropdowns / datepicker panels) */
+.cdk-overlay-container .mat-select-panel,
+.cdk-overlay-container .mat-datepicker-content,
+.cdk-overlay-container .mat-calendar,
+.cdk-overlay-container .mat-option {
+  background-color: #ffffff !important; /* opaque white */
+  color: rgba(0,0,0,0.87) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12) !important;
+  border-radius: 6px !important;
+}
+
+/* Ensure options have readable hover state */
+.cdk-overlay-container .mat-option:hover,
+.cdk-overlay-container .mat-option.mat-focused {
+  background-color: rgba(0,0,0,0.04) !important;
+}
+
+/* Datepicker calendar cell background override (if theme made them transparent) */
+.cdk-overlay-container .mat-calendar-body-cell {
+  background: transparent;
+}
+
+/* Force the panel text color for selected/active states */
+.cdk-overlay-container .mat-option.mat-selected {
+  background-color: rgba(0,0,0,0.06) !important;
+  color: rgba(0,0,0,0.87) !important;
+}
